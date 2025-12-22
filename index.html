@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>哈特音樂劇展演節目單</title>
     <style>
+        /* --- 網頁版樣式 --- */
         body {
             margin: 0;
             padding: 20px;
             background-color: #f5f5f5;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, "Microsoft JhengHei", sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
         .main-container {
             max-width: 800px;
@@ -27,19 +30,33 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-        /* 劇情介紹色塊設計 */
         .program-block {
             padding: 40px 30px;
             border-radius: 18px;
-            margin-bottom: 45px;
+            margin-bottom: 30px;
             line-height: 1.7;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -5px rgba(0, 0, 0, 0.04);
             overflow: hidden;
             border: 1px solid rgba(0,0,0,0.03);
-            transition: transform 0.3s ease;
+            break-inside: avoid;
         }
-        .program-block:hover {
-            transform: translateY(-3px);
+        
+        /* --- PDF/列印 專用設定 --- */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #fff;
+            }
+            .main-container {
+                box-shadow: none;
+                max-width: 100%;
+                width: 100%;
+                padding: 20px 40px;
+            }
+            .program-block, table {
+                page-break-inside: avoid;
+            }
         }
     </style>
 </head>
@@ -79,9 +96,13 @@
         </div>
 
         <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 20px auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06);">
-            <div style="background-color: #333; color: #fff; padding: 15px; text-align: center;">
-                <h3 style="margin: 0; font-size: 1.2rem; letter-spacing: 1px;">演出當日流程表</h3>
+            <div style="background-color: #333; color: #fff; padding: 25px 15px; text-align: center;">
+                <h3 style="margin: 0 0 12px 0; font-size: 1.3rem; letter-spacing: 1px;">演出當日流程表</h3>
+                <div style="display: inline-block; background-color: rgba(255,255,255,0.15); padding: 6px 16px; border-radius: 20px; font-size: 0.95rem; font-weight: normal; border: 1px solid rgba(255,255,255,0.2);">
+                    📍 地點：<strong>文山劇場</strong> <span style="font-size: 0.9em; opacity: 0.9; margin-left: 5px;">(文山區景文街32號)</span>
+                </div>
             </div>
+            
             <table style="width: 100%; border-collapse: collapse; text-align: left;">
                 <tbody>
                     <tr style="border-bottom: 1px solid #f0f0f0;">
@@ -125,7 +146,9 @@
                 附註：為了完美的觀賞品質，拜託拜託～一定要提早出門喔！🥺
             </div>
         </div>
-    </div> </body>
+    </div> 
+
+</body>
 </html>
 
 ```
