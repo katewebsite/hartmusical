@@ -8,7 +8,7 @@
         body {
             margin: 0;
             padding: 20px;
-            background-color: #f5f5f5; /* 背景維持淺灰，襯托主體 */
+            background-color: #f5f5f5;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         .main-container {
@@ -17,7 +17,7 @@
             background-color: #fff;
             padding: 20px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border-radius: 12px; /* 主容器也稍微圓潤一點 */
+            border-radius: 12px;
         }
         .header-image {
             width: 100%;
@@ -25,23 +25,19 @@
             display: block;
             margin-bottom: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* 圖片也加上一點陰影 */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-        /* --- 核心修改：劇情介紹色塊設計升級 --- */
+        /* 劇情介紹色塊設計 */
         .program-block {
-            padding: 40px 30px;      /* 增加內部留白，更大氣 */
-            border-radius: 18px;     /* 更明顯的圓角矩形 */
-            margin-bottom: 45px;     /* 區塊間距拉大 */
-            line-height: 1.7;        /* 行距再舒服一點 */
-            /* 新增：立體感陰影 */
+            padding: 40px 30px;
+            border-radius: 18px;
+            margin-bottom: 45px;
+            line-height: 1.7;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -5px rgba(0, 0, 0, 0.04);
-            /* 確保內容不會跑出圓角 */
             overflow: hidden;
-            /* 加入一點細微的邊框定義 */
             border: 1px solid rgba(0,0,0,0.03);
-            transition: transform 0.3s ease; /* 讓它看起來有點互動感 */
+            transition: transform 0.3s ease;
         }
-        /* 滑鼠移上去時稍微浮起 (這行可選，增加互動感) */
         .program-block:hover {
             transform: translateY(-3px);
         }
@@ -90,16 +86,17 @@
                 <tbody>
                     <tr style="border-bottom: 1px solid #f0f0f0;">
                         <td style="padding: 12px 15px; width: 80px; color: #666; font-weight: bold;">14:00</td>
-                        <td style="padding: 12px 15px;">觀眾開始入場</td>
+                        <td style="padding: 12px 15px;">開放入場 (Welcome!)</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid #f0f0f0; background-color: #fff5f5;">
-                        <td style="padding: 12px 15px; width: 80px; color: #d9534f; font-weight: bold;">14:20</td>
-                        <td style="padding: 12px 15px; color: #d9534f;"><strong>停止開放入場 / 準備開演</strong> <br />
-                        <span style="font-size: 0.85em;">(請準時入座，遲到觀眾需稍候)</span></td>
+                    
+                    <tr style="border-bottom: 1px solid #ffcccc; background-color: #ffeaea; border-left: 5px solid #ff4500;">
+                        <td style="padding: 12px 15px; width: 80px; color: #d9534f; font-weight: 900; font-size: 1.1em;">14:20</td>
+                        <td style="padding: 12px 15px; color: #d9534f; font-size: 1.05em;"><strong>準時關門，請盡速入座 ❤️</strong></td>
                     </tr>
+                    
                     <tr style="border-bottom: 2px solid #eee;">
                         <td style="padding: 12px 15px; width: 80px; font-weight: bold; font-size: 1.1em;">14:30</td>
-                        <td style="padding: 12px 15px; font-weight: bold; font-size: 1.1em;">正式開演</td>
+                        <td style="padding: 12px 15px; font-weight: bold; font-size: 1.1em;">夢想啟航，正式演出</td>
                     </tr>
                     <tr style="background-color: #fffaf5;">
                         <td style="padding: 15px; vertical-align: top; border-left: 4px solid #ff7f50;">&nbsp;</td>
@@ -124,7 +121,9 @@
                     </tr>
                 </tbody>
             </table>
-            <div style="padding: 10px; background-color: #fcfcfc; color: #999; font-size: 0.8em; text-align: center;">* 實際流程時間可能視現場狀況微幅調整。</div>
+            <div style="padding: 15px; background-color: #fcfcfc; color: #666; font-size: 0.9em; text-align: center; line-height: 1.5;">
+                附註：為了完美的觀賞品質，拜託拜託～一定要提早出門喔！🥺
+            </div>
         </div>
     </div> </body>
 </html>
