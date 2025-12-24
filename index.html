@@ -4,151 +4,380 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>哈特音樂劇展演節目單</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 網頁版樣式 --- */
+        /* --- 全域變數 (古典奢華系) --- */
+        :root {
+            --bg-main: #0a0e1a;       /* 極深午夜藍背景 */
+            --bg-card: #131a2e;       /* 卡片深藍背景 */
+            --text-gold: #d4af37;     /* 經典香檳金 */
+            --text-white: #e0e0e0;    /* 清晰米白字 */
+            --text-muted: #8a9ab8;    /* 藍灰次要文字 */
+            --border-gold: 1px solid rgba(212, 175, 55, 0.4); /* 細緻金邊框 */
+        }
+
         body {
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            font-family: 'Helvetica Neue', Helvetica, Arial, "Microsoft JhengHei", sans-serif;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
+            padding: 0;
+            background: radial-gradient(circle at top center, #1a243f 0%, var(--bg-main) 80%);
+            background-attachment: fixed;
+            color: var(--text-white);
+            font-family: 'Helvetica Neue', Helvetica, "PingFang TC", "Microsoft JhengHei", sans-serif;
+            line-height: 1.7;
+            padding-bottom: 100px;
         }
+
+        /* 標題專用襯線字體 */
+        h1, h2, h3, .serif-font {
+            font-family: 'Noto Serif TC', 'Songti TC', serif;
+            letter-spacing: 1px;
+        }
+
+        /* --- 導覽列 --- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px 0;
+        }
+        .navbar a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            padding: 5px 15px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .navbar a:hover, .navbar a.active { 
+            color: var(--text-gold);
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        /* --- 主容器 --- */
         .main-container {
             max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border-radius: 12px;
+            margin: 40px auto;
+            padding: 25px;
         }
+
+        /* --- 頭圖 --- */
         .header-image {
             width: 100%;
-            height: auto;
-            display: block;
+            border-radius: 8px;
             margin-bottom: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: var(--border-gold);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
         }
-        .program-block {
-            padding: 40px 30px;
-            border-radius: 18px;
-            margin-bottom: 30px;
-            line-height: 1.7;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -5px rgba(0, 0, 0, 0.04);
-            overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.03);
-            break-inside: avoid;
+
+        /* --- 通用豪華卡片 --- */
+        .luxury-card {
+            background-color: var(--bg-card);
+            border: var(--border-gold);
+            border-radius: 8px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        /* --- 章節標題 --- */
+        .main-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--text-gold);
+            margin: 60px 0 30px 0;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .main-title::before, .main-title::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: var(--text-gold);
+            margin: 0 20px;
+            opacity: 0.5;
+        }
+
+        /* --- 區塊小標題 --- */
+        .section-header {
+            color: var(--text-gold);
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .section-header::before {
+            content: "◆";
+            margin-right: 12px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* --- 劇目樣式 --- */
+        .show-tag {
+            display: inline-block;
+            color: var(--text-gold);
+            padding: 4px 12px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            font-size: 0.85rem;
+            margin-right: 10px;
+            margin-bottom: 15px;
         }
         
-        /* --- PDF/列印 專用設定 --- */
-        @media print {
-            body {
-                margin: 0;
-                padding: 0;
-                background-color: #fff;
-            }
-            .main-container {
-                box-shadow: none;
-                max-width: 100%;
-                width: 100%;
-                padding: 20px 40px;
-            }
-            .program-block, table {
-                page-break-inside: avoid;
-            }
+        .show-title {
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            font-weight: bold;
+            color: var(--text-gold);
+        }
+        
+        .show-meta {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 25px;
+            font-family: 'Noto Serif TC', serif;
+            font-style: italic;
+        }
+        
+        .show-quote {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-white);
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            font-family: 'Noto Serif TC', serif;
+            font-style: italic;
+        }
+
+        /* 質感分隔線 */
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.4), transparent);
+            margin: 35px 0;
+        }
+
+        /* 曲目表 */
+        .song-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .song-item {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            color: var(--text-white);
+            font-size: 1rem;
+            display: flex;
+        }
+        .song-item-num {
+            color: var(--text-gold);
+            font-weight: bold;
+            margin-right: 15px;
+            font-family: 'Noto Serif TC', serif;
+        }
+        .song-item:last-child { border-bottom: none; }
+
+        /* --- 時間表 --- */
+        table { width: 100%; border-collapse: collapse; }
+        .time-row { border-bottom: 1px solid rgba(212, 175, 55, 0.15); }
+        .time-col { 
+            padding: 20px 15px; width: 70px; 
+            color: var(--text-gold); font-weight: bold; font-family: 'Noto Serif TC', serif; font-size: 1.2rem; 
+            vertical-align: top;
+        }
+        .event-col { padding: 20px 15px; font-size: 1rem; }
+        
+        .highlight-row { 
+            background: rgba(212, 175, 55, 0.08);
+            border-left: 3px solid var(--text-gold);
+        }
+        .highlight-text { color: var(--text-gold); font-weight: bold; }
+
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
 
+    <nav class="navbar serif-font">
+        <a href="#intro">關於</a>
+        <a href="#show1">上半場</a>
+        <a href="#show2">下半場</a>
+        <a href="#schedule">流程</a>
+    </nav>
+
     <div class="main-container">
-        <img src="image1.png" alt="節目單主題照片" class="header-image">
-
-        <div class="program-block" style="background: linear-gradient(to bottom, #fffaf8, #fff0f0); border-left: 6px solid #ff4500;">
-            <span style="font-size: larger;"><strong>上半場： 【The last 30mins 】 (青少年音樂劇 | 全長約 30 分鐘 | 全英文)<br />
-            <br />
-            </strong><span style="color: rgb(128, 0, 0);"><em><strong>「夢想不是喊出來，是爭取來的。」<br />
-            </strong></em></span><br />
-            <span style="color: rgb(255, 102, 0);">劇情簡介 Synopsis： <br />
-            </span>高中生樂團遭投訴製造噪音，接獲學校下達的「即刻解散命令」！在廢社前的最後一夜，他們極限創作屬於自己的原創曲。誓言用最熱血的音樂逆轉命運，贏回屬於他們的尊嚴與未來！<br />
-            <br />
-            <span style="color: rgb(255, 102, 0);">觀賞焦點：</span> <br />
-            直擊人心的原創樂章，一場用實力與行動，奮力爭取夢想的證明！<br />
-            <br />
-            <span style="color: rgb(255, 102, 0);">獻給：</span> <br />
-            每一位曾經為了自己熱愛的事物而奮戰過的人。</span>
+        
+        <div id="intro" style="text-align: center;">
+            <img src="image1.png" alt="節目單主題照片" class="header-image">
         </div>
 
-        <div class="program-block" style="background: linear-gradient(to bottom, #f5fbff, #f0f8ff); border-left: 6px solid #87ceeb;">
-            <span style="font-size: larger;"><strong>下半場： 【夢想筆記本】 (兒童音樂劇 | 全長約 60 分鐘 | 中文)<br />
-            <br />
-            </strong><span style="color: rgb(0, 0, 128);"><em><strong>「在分數與夢想的夾縫中，我們是否弄丟了什麼？」<br />
-            </strong></em></span> <br />
-            <span style="color: rgb(51, 102, 255);">劇情簡介 Synopsis：</span> <br />
-            孩子受困於考試的壓力，無意間喚醒了父母昔日不得不放棄夢想的遺憾回憶。當面對下一代眼中同樣渴望的光芒時，身為父母，該讓孩子重蹈覆轍走上安全的路，還是放手成全未知的冒險？這是一場跨越兩代，關於愛、理解與自我和解的深情對話。 <br />
-            <br />
-            <span style="color: rgb(51, 102, 255);">觀賞焦點：</span> <br />
-            親子間細膩的情感流動、充滿童趣又不失深度的歌曲。<br />
-            <br />
-            <span style="color: rgb(51, 102, 255);">獻給： <br />
-            </span>曾經是小孩的大人，以及正在長大的孩子們。 </span>
+        <div class="luxury-card">
+            <div class="section-header serif-font" style="margin-bottom: 15px;">關於劇團</div>
+            <div style="font-size: 1.1rem; color: var(--text-white); margin-bottom: 15px;">
+                <span style="color: var(--text-muted);">團長：</span>謝文德 老師 <span style="font-size: 0.85em; color:var(--text-muted);">(迪士尼 Disney 華語版音樂總指導)</span>
+            </div>
+            <div style="font-size: 1rem; color: var(--text-muted);">
+                團名的寓意為回歸初心，展現純粹喜愛音樂表演的熱情。我們致力於培育新世代人才，並積極推廣原創中文音樂劇。
+            </div>
         </div>
 
-        <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 20px auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06);">
-            <div style="background-color: #333; color: #fff; padding: 25px 15px; text-align: center;">
-                <h3 style="margin: 0 0 12px 0; font-size: 1.3rem; letter-spacing: 1px;">演出當日流程表</h3>
-                <div style="display: inline-block; background-color: rgba(255,255,255,0.15); padding: 6px 16px; border-radius: 20px; font-size: 0.95rem; font-weight: normal; border: 1px solid rgba(255,255,255,0.2);">
-                    📍 地點：<strong>文山劇場</strong> <span style="font-size: 0.9em; opacity: 0.9; margin-left: 5px;">(文山區景文街32號)</span>
+        <h2 class="main-title serif-font">演出劇目</h2>
+
+        <div id="show1" class="luxury-card">
+            <div>
+                <span class="show-tag">上半場</span> <span class="show-tag">全英文</span>
+                <h2 class="show-title serif-font">The Last 30 Mins</h2>
+                <div class="show-meta">青少年音樂劇 | 30分鐘</div>
+            </div>
+
+            <div class="show-quote">"Make room for our sound."<br>「夢想不是喊出來，是爭取來的。」</div>
+            
+            <div style="color: var(--text-white); margin-bottom: 30px; font-size: 1.05rem;">
+                高中生樂團遭投訴製造噪音，接獲學校下達的「即刻解散命令」！在廢社前的最後一夜，他們極限創作屬於自己的原創曲，誓言用最熱血的音樂逆轉命運。
+            </div>
+
+            <div class="divider"></div>
+
+            <div style="margin-bottom: 40px; display: grid; gap: 25px;">
+                <div>
+                    <div class="section-header serif-font">觀賞焦點</div>
+                    <div style="color: var(--text-white);">直擊人心的原創樂章，一場用實力與行動，奮力爭取夢想的證明！</div>
+                </div>
+                <div>
+                    <div class="section-header serif-font">獻給</div>
+                    <div style="color: var(--text-white);">每一位曾經為了自己熱愛的事物而奮戰過的人。</div>
                 </div>
             </div>
-            
-            <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                <tbody>
-                    <tr style="border-bottom: 1px solid #f0f0f0;">
-                        <td style="padding: 12px 15px; width: 80px; color: #666; font-weight: bold;">14:00</td>
-                        <td style="padding: 12px 15px;">開放入場 (Welcome!)</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #ffcccc; background-color: #ffeaea; border-left: 5px solid #ff4500;">
-                        <td style="padding: 12px 15px; width: 80px; color: #d9534f; font-weight: 900; font-size: 1.1em;">14:20</td>
-                        <td style="padding: 12px 15px; color: #d9534f; font-size: 1.05em;"><strong>準時關門，請盡速入座 ❤️</strong></td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 2px solid #eee;">
-                        <td style="padding: 12px 15px; width: 80px; font-weight: bold; font-size: 1.1em;">14:30</td>
-                        <td style="padding: 12px 15px; font-weight: bold; font-size: 1.1em;">夢想啟航，正式演出</td>
-                    </tr>
-                    <tr style="background-color: #fffaf5;">
-                        <td style="padding: 15px; vertical-align: top; border-left: 4px solid #ff7f50;">&nbsp;</td>
-                        <td style="padding: 15px;"><span style="display: inline-block; background-color: #ff7f50; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-bottom: 5px;">上半場</span>
-                        <div style="font-size: 1.1em; font-weight: bold; color: #333;">《The Last 30 Mins》</div>
-                        <div style="color: #666; font-size: 0.9em; margin-top: 4px;">青少年全英語音樂劇 (30分鐘)</div>
-                        </td>
-                    </tr>
-                    <tr style="background-color: #ffffff; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
-                        <td colspan="2" style="padding: 8px 10px; text-align: center; color: #888; font-style: italic; font-size: 0.9em;">--- 中場休息 20分鐘 ---</td>
-                    </tr>
-                    <tr style="background-color: #f9fdff;">
-                        <td style="padding: 15px; vertical-align: top; border-left: 4px solid #87ceeb;">&nbsp;</td>
-                        <td style="padding: 15px;"><span style="display: inline-block; background-color: #87ceeb; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-bottom: 5px;">下半場</span>
-                        <div style="font-size: 1.1em; font-weight: bold; color: #333;">《夢想筆記本》</div>
-                        <div style="color: #666; font-size: 0.9em; margin-top: 4px;">兒童音樂劇 (60分鐘)</div>
-                        </td>
-                    </tr>
-                    <tr style="border-top: 2px solid #eee;">
-                        <td style="padding: 15px; width: 80px; color: #666; font-weight: bold;">16:20</td>
-                        <td style="padding: 15px; color: #333;">預計演出結束 / 散場</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div style="padding: 15px; background-color: #fcfcfc; color: #666; font-size: 0.9em; text-align: center; line-height: 1.5;">
-                附註：為了完美的觀賞品質，拜託拜託～一定要提早出門喔！🥺
+
+            <div class="divider"></div>
+
+            <div>
+                <div class="section-header serif-font">曲目</div>
+                <ul class="song-list">
+                    <li class="song-item"><span class="song-item-num">01</span> This Room, Tonight</li>
+                    <li class="song-item"><span class="song-item-num">02</span> Thirty Minutes to Prove It</li>
+                    <li class="song-item"><span class="song-item-num">03</span> If We Lose This Room</li>
+                    <li class="song-item"><span class="song-item-num">04</span> Make Room for Our Sound</li>
+                </ul>
             </div>
         </div>
-    </div> 
+
+        <div id="show2" class="luxury-card">
+            <div>
+                <span class="show-tag">下半場</span> <span class="show-tag">中文</span>
+                <h2 class="show-title serif-font">夢想筆記本</h2>
+                <div class="show-meta">兒童音樂劇 | 60分鐘</div>
+            </div>
+
+            <div class="show-quote">「在分數與夢想的夾縫中，我們是否弄丟了什麼？」</div>
+            
+            <div style="color: var(--text-white); margin-bottom: 30px; font-size: 1.05rem;">
+                孩子受困於考試的壓力，無意間喚醒了父母昔日不得不放棄夢想的遺憾回憶。這是一場跨越兩代，關於愛、理解與自我和解的深情對話。
+            </div>
+
+            <div class="divider"></div>
+
+            <div style="margin-bottom: 40px; display: grid; gap: 25px;">
+                <div>
+                    <div class="section-header serif-font">觀賞焦點</div>
+                    <div style="color: var(--text-white);">親子間細膩的情感流動、充滿童趣又不失深度的歌曲。</div>
+                </div>
+                <div>
+                    <div class="section-header serif-font">獻給</div>
+                    <div style="color: var(--text-white);">曾經是小孩的大人，以及正在長大的孩子們。</div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div>
+                <div class="section-header serif-font">曲目</div>
+                <ul class="song-list">
+                    <li class="song-item"><span class="song-item-num">01</span> 半個暑假</li>
+                    <li class="song-item"><span class="song-item-num">02</span> 大大大書包</li>
+                    <li class="song-item"><span class="song-item-num">03</span> 考試考試考試</li>
+                    <li class="song-item"><span class="song-item-num">04</span> 我有一個夢</li>
+                    <li class="song-item"><span class="song-item-num">05</span> 我還記得那片星空</li>
+                    <li class="song-item"><span class="song-item-num">06</span> 我的秘密基地</li>
+                    <li class="song-item"><span class="song-item-num">07</span> 把呼吸留在這裡</li>
+                    <li class="song-item"><span class="song-item-num">08</span> 夢想傳遞</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="schedule">
+            <h2 class="main-title serif-font">當日流程</h2>
+            <div class="luxury-card" style="padding: 30px;">
+                <table>
+                    <tr class="time-row">
+                        <td class="time-col">14:00</td>
+                        <td class="event-col">開放入場 (Welcome!)</td>
+                    </tr>
+                    <tr class="time-row highlight-row">
+                        <td class="time-col">14:20</td>
+                        <td class="event-col highlight-text">準時關門，請盡速入座 ❤️</td>
+                    </tr>
+                    <tr class="time-row">
+                        <td class="time-col">14:30</td>
+                        <td class="event-col" style="font-weight: bold; color: var(--text-gold); font-size: 1.1rem;">夢想啟航，正式演出</td>
+                    </tr>
+                    <tr class="time-row">
+                        <td class="time-col">上半場</td>
+                        <td class="event-col">
+                            <strong>《The Last 30 Mins》</strong>
+                            <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">青少年全英語音樂劇</div>
+                        </td>
+                    </tr>
+                    <tr class="time-row">
+                        <td colspan="2" style="text-align: center; padding: 30px; color: var(--text-muted); font-style: italic; letter-spacing: 1px;">--- 中場休息 20分鐘 ---</td>
+                    </tr>
+                    <tr class="time-row">
+                        <td class="time-col">下半場</td>
+                        <td class="event-col">
+                            <strong>《夢想筆記本》</strong>
+                            <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">兒童音樂劇</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">16:20</td>
+                        <td class="event-col">預計演出結束 / 散場</td>
+                    </tr>
+                </table>
+                <div style="margin-top: 30px; text-align: center; color: var(--text-gold); font-size: 0.95rem; opacity: 0.8;">
+                    為了完美的觀賞品質，拜託拜託～一定要提早出門喔！🥺
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2025 Hart Musical. Designed for the Audience.
+        </div>
+
+    </div>
 
 </body>
 </html>
-
-```
