@@ -3,495 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>哈特音樂劇展演節目單</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <title>愛樂之夜 - 林俊齊首場個人演奏會</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 全域變數 (古典奢華系) --- */
         :root {
-            /* 參考圖的核心配色 */
-            --bg-main: #0a0e1a;       /* 極深午夜藍背景 */
-            --bg-card: #131a2e;       /* 卡片深藍背景 */
-            --text-gold: #d4af37;     /* 經典香檳金 */
-            --text-white: #e0e0e0;    /* 清晰米白字 */
-            --text-muted: #8a9ab8;    /* 藍灰次要文字 */
-            --border-gold: 1px solid rgba(212, 175, 55, 0.4); /* 細緻金邊框 */
+            --bg-deep: #0e162b;
+            --bg-gradient-top: #1b294f;
+            --accent-orange: #ff9f43;
+            --text-white: #ffffff;
+            --text-gray: #b0c4de;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-glow: 1px solid rgba(255, 159, 67, 0.4);
         }
-
         body {
-            margin: 0;
-            padding: 0;
-            /* 深邃的藍色漸層背景 */
-            background: radial-gradient(circle at top center, #1a243f 0%, var(--bg-main) 80%);
+            margin: 0; padding: 0;
+            background-color: var(--bg-deep);
+            background-image: linear-gradient(to bottom, var(--bg-gradient-top) 0%, var(--bg-deep) 100%);
             background-attachment: fixed;
             color: var(--text-white);
-            font-family: 'Helvetica Neue', Helvetica, "PingFang TC", "Microsoft JhengHei", sans-serif;
-            line-height: 1.7;
-            padding-bottom: 100px;
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.6;
+            padding-bottom: 60px;
         }
-
-        /* 標題專用襯線字體 */
-        h1, h2, h3, .serif-font {
-            font-family: 'Noto Serif TC', 'Songti TC', serif;
-            letter-spacing: 1px;
+        h1, h2, h3, .serif { font-family: 'Noto Serif TC', serif; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        
+        /* Header */
+        .header-section { text-align: center; margin-bottom: 30px; }
+        .profile-img {
+            width: 100%; max-width: 400px; height: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 159, 67, 0.2);
+            border: 2px solid rgba(255, 159, 67, 0.3);
+            margin-bottom: 25px; object-fit: cover;
         }
-
-        /* --- 導覽列 --- */
-        .navbar {
-            position: sticky;
-            top: 0;
-            background: rgba(10, 14, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 15px 0;
-        }
-        .navbar a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            padding: 5px 15px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-        }
-        .navbar a:hover, .navbar a.active { 
-            color: var(--text-gold);
-            border-color: rgba(212, 175, 55, 0.3);
-            background: rgba(212, 175, 55, 0.05);
-        }
-
-        /* --- 主容器 --- */
-        .main-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 25px;
-        }
-
-        /* --- 頭圖 --- */
-        .header-image {
-            width: 100%;
-            border-radius: 8px;
-            margin-bottom: 10px; /* 縮小與下方內容的距離 */
-            /* 加上細金邊框和深沈陰影 */
-            border: var(--border-gold);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-        }
-
-        /* --- 通用豪華卡片 --- */
-        .luxury-card {
-            background-color: var(--bg-card);
-            border: var(--border-gold); /* 核心：細金邊框 */
-            border-radius: 8px;
-            padding: 35px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            position: relative;
-        }
-
-        /* --- 章節標題 --- */
         .main-title {
-            text-align: center;
-            font-size: 1.8rem;
-            color: var(--text-gold);
-            margin: 60px 0 30px 0;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 1.8rem; color: var(--accent-orange); font-weight: 700;
+            margin-bottom: 10px; text-shadow: 0 0 10px rgba(255, 159, 67, 0.5); letter-spacing: 1px;
         }
-        .main-title::before, .main-title::after {
-            content: "";
-            display: block;
-            width: 40px;
-            height: 1px;
-            background: var(--text-gold);
-            margin: 0 20px;
-            opacity: 0.5;
-        }
+        .sub-title { font-size: 1.4rem; margin-bottom: 5px; font-weight: 400; }
+        .eng-title { font-size: 0.9rem; color: var(--text-gray); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; }
 
-        /* --- 區塊小標題 --- */
-        .section-header {
-            color: var(--text-gold);
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
+        /* Card */
+        .info-card {
+            background: var(--card-bg); border: var(--border-glow); border-radius: 16px;
+            padding: 25px; margin-bottom: 25px;
+            backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        /* 金色菱形裝飾 */
-        .section-header::before {
-            content: "◆";
-            margin-right: 12px;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
+        .info-row { display: flex; margin-bottom: 15px; align-items: flex-start; }
+        .info-icon { flex-shrink: 0; width: 24px; margin-right: 15px; text-align: center; }
+        .info-content { flex-grow: 1; }
+        .info-label { display: block; color: var(--accent-orange); font-size: 0.9rem; margin-bottom: 2px; font-weight: bold; }
+        .info-value { font-size: 1.05rem; color: #eee; }
+        .note { font-size: 0.85rem; color: var(--text-gray); margin-top: 5px; }
 
-        /* --- 導演的話 & 劇團介紹 --- */
-        .director-quote {
-            font-family: 'Noto Serif TC', serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--text-white);
-            line-height: 1.9;
-            text-align: center;
-            margin-bottom: 30px;
+        /* Button */
+        .btn {
+            display: inline-block; background: linear-gradient(45deg, #e67e22, #f39c12);
+            color: white; text-decoration: none; padding: 10px 20px; border-radius: 50px;
+            font-weight: bold; margin-top: 10px; transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4); font-size: 0.9rem;
         }
-        
-        .troupe-box {
-            background: rgba(0,0,0,0.2);
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            padding-top: 25px;
-        }
+        .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
-        /* --- 劇目樣式 --- */
-        .show-tag {
-            display: inline-block;
-            color: var(--text-gold);
-            padding: 4px 12px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            font-size: 0.85rem;
-            margin-right: 10px;
-            margin-bottom: 15px;
+        /* Schedule */
+        .schedule-list { list-style: none; padding: 0; margin: 0; position: relative; }
+        .schedule-list::before {
+            content: ''; position: absolute; left: 55px; top: 10px; bottom: 10px;
+            width: 2px; background: rgba(255, 159, 67, 0.3);
         }
-        
-        .show-title {
-            font-size: 2.2rem;
-            margin: 0 0 10px 0;
-            font-weight: bold;
-            color: var(--text-gold);
+        .schedule-item { display: flex; margin-bottom: 15px; position: relative; }
+        .time {
+            width: 50px; font-weight: bold; color: var(--accent-orange);
+            font-family: monospace; font-size: 1.1rem; text-align: right; padding-right: 15px;
         }
-        
-        .show-meta {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 25px;
-            font-family: 'Noto Serif TC', serif;
-            font-style: italic;
+        .event { padding-left: 20px; padding-bottom: 10px; }
+        .event::before {
+            content: ''; position: absolute; left: 51px; top: 8px; width: 10px; height: 10px;
+            background: var(--bg-deep); border: 2px solid var(--accent-orange);
+            border-radius: 50%; z-index: 1;
         }
-        
-        .show-quote {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--text-white);
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            font-family: 'Noto Serif TC', serif;
-            font-style: italic;
-        }
+        .highlight-event { color: #fff; font-weight: bold; font-size: 1.1rem; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
 
-        /* 質感分隔線 */
-        .divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.4), transparent);
-            margin: 35px 0;
+        /* Open Mic */
+        .open-mic-box {
+            background: rgba(255, 159, 67, 0.1); border-left: 4px solid var(--accent-orange);
+            padding: 15px; border-radius: 0 10px 10px 0; margin-top: 10px;
         }
-
-        /* 曲目表 */
-        .song-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .om-title { color: var(--accent-orange); font-weight: bold; margin-bottom: 8px; display: block; }
+        .instrument-tags span {
+            display: inline-block; background: rgba(255,255,255,0.1); padding: 4px 10px;
+            border-radius: 4px; font-size: 0.85rem; margin-right: 5px; margin-bottom: 5px; color: #ddd;
         }
-        .song-item {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-            color: var(--text-white);
-            font-size: 1rem;
-            display: flex;
-        }
-        /* 金色數字編號 */
-        .song-item-num {
-            color: var(--text-gold);
-            font-weight: bold;
-            margin-right: 15px;
-            font-family: 'Noto Serif TC', serif;
-        }
-        .song-item:last-child { border-bottom: none; }
-
-        /* 卡司 Grid */
-        .cast-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 15px;
-        }
-        .cast-item {
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 15px;
-            text-align: center;
-            transition: all 0.3s;
-            background: rgba(0,0,0,0.1);
-        }
-        .cast-item:hover { 
-            border-color: var(--text-gold);
-            background: rgba(212, 175, 55, 0.05);
-        }
-        .cast-role { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
-        .cast-name { font-size: 1rem; font-weight: bold; color: var(--text-white); }
-
-        /* 製作團隊 */
-        .creative-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            row-gap: 12px;
-        }
-        .creative-row {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-            padding-bottom: 8px;
-        }
-        .c-role { color: var(--text-muted); font-size: 0.9rem; }
-        .c-name { color: var(--text-white); font-weight: bold; font-size: 0.95rem; }
-
-        /* --- 時間表 --- */
-        table { width: 100%; border-collapse: collapse; }
-        .time-row { border-bottom: 1px solid rgba(212, 175, 55, 0.15); }
-        .time-col { 
-            padding: 20px 15px; width: 70px; 
-            color: var(--text-gold); font-weight: bold; font-family: 'Noto Serif TC', serif; font-size: 1.2rem; 
-            vertical-align: top;
-        }
-        .event-col { padding: 20px 15px; font-size: 1rem; }
-        
-        .highlight-row { 
-            background: rgba(212, 175, 55, 0.08);
-            border-left: 3px solid var(--text-gold);
-        }
-        .highlight-text { color: var(--text-gold); font-weight: bold; }
-
         .footer {
-            text-align: center;
-            margin-top: 80px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            opacity: 0.7;
+            text-align: center; margin-top: 50px; font-size: 0.8rem;
+            color: var(--text-gray); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;
+        }
+        .city-silhouette {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 50px;
+            background: linear-gradient(to top, #000 0%, transparent 100%); opacity: 0.5; z-index: -1; pointer-events: none;
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar serif-font">
-        <a href="#intro">簡介</a>
-        <a href="#show1">上半場</a>
-        <a href="#show2">下半場</a>
-        <a href="#schedule">流程</a>
-    </nav>
-
-    <div class="main-container">
-        
-        <div id="intro" style="text-align: center;">
-            <img src="image1.png" alt="節目單主題照片" class="header-image">
-            </div>
-
-        <div class="luxury-card">
-            <div class="section-header serif-font">導演的話</div>
-            <div class="director-quote">
-                「每一次的登台，都是一次勇敢的飛行。<br>感謝您今晚來到文山劇場，與我們一同見證這些故事。<br>希望今晚的演出，能成為您心中溫暖的火花。」
-            </div>
-            <div style="text-align: center; font-weight: bold; color: var(--text-gold); margin-bottom: 30px;">—— 哈特音樂劇團</div>
-
-            <div class="troupe-box">
-                <div class="section-header serif-font" style="margin-bottom: 15px;">關於劇團</div>
-                <div style="font-size: 1.1rem; color: var(--text-white); margin-bottom: 15px;">
-                    <span style="color: var(--text-muted);">團長：</span>謝文德 老師 <span style="font-size: 0.85em; color:var(--text-muted);">(迪士尼 Disney 華語版音樂總指導)</span>
-                </div>
-                <div style="font-size: 1rem; color: var(--text-muted);">
-                    團名的寓意為回歸初心，展現純粹喜愛音樂表演的熱情。我們致力於培育新世代人才，並積極推廣原創中文音樂劇。
-                </div>
-            </div>
-        </div>
-
-        <h2 class="main-title serif-font">演出劇目</h2>
-
-        <div id="show1" class="luxury-card">
-            <div>
-                <span class="show-tag">上半場</span> <span class="show-tag">全英文</span>
-                <h2 class="show-title serif-font">The Last 30 Mins</h2>
-                <div class="show-meta">青少年音樂劇 | 30分鐘</div>
-            </div>
-
-            <div class="show-quote">"Make room for our sound."<br>「夢想不是喊出來，是爭取來的。」</div>
-            
-            <div style="color: var(--text-white); margin-bottom: 30px; font-size: 1.05rem;">
-                高中生樂團遭投訴製造噪音，接獲學校下達的「即刻解散命令」！在廢社前的最後一夜，他們極限創作屬於自己的原創曲，誓言用最熱血的音樂逆轉命運。
-            </div>
-
-            <div class="divider"></div>
-
-            <div style="margin-bottom: 40px; display: grid; gap: 25px;">
-                <div>
-                    <div class="section-header serif-font">觀賞焦點</div>
-                    <div style="color: var(--text-white);">直擊人心的原創樂章，一場用實力與行動，奮力爭取夢想的證明！</div>
-                </div>
-                <div>
-                    <div class="section-header serif-font">獻給</div>
-                    <div style="color: var(--text-white);">每一位曾經為了自己熱愛的事物而奮戰過的人。</div>
-                </div>
-            </div>
-
-            <div class="divider"></div>
-
-            <div style="margin-bottom: 50px;">
-                <div class="section-header serif-font">曲目</div>
-                <ul class="song-list">
-                    <li class="song-item"><span class="song-item-num">01</span> This Room, Tonight</li>
-                    <li class="song-item"><span class="song-item-num">02</span> Thirty Minutes to Prove It</li>
-                    <li class="song-item"><span class="song-item-num">03</span> If We Lose This Room</li>
-                    <li class="song-item"><span class="song-item-num">04</span> Make Room for Our Sound</li>
-                </ul>
-            </div>
-
-            <div style="margin-bottom: 50px;">
-                <div class="section-header serif-font">演出卡司</div>
-                <div class="cast-grid">
-                    <div class="cast-item"><div class="cast-role">角色</div><div class="cast-name">姓名</div></div>
-                    <div class="cast-item"><div class="cast-role">角色</div><div class="cast-name">姓名</div></div>
-                    <div class="cast-item"><div class="cast-role">角色</div><div class="cast-name">姓名</div></div>
-                    <div class="cast-item"><div class="cast-role">角色</div><div class="cast-name">姓名</div></div>
-                </div>
-            </div>
-
-            <div>
-                <div class="section-header serif-font">製作團隊</div>
-                <div class="creative-grid">
-                    <div class="creative-row"><span class="c-role">編劇</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">編曲</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">作詞</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">編舞</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">作曲</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">戲劇指導</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">音樂製作</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">歌唱指導</span><span class="c-name">姓名</span></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="show2" class="luxury-card">
-            <div>
-                <span class="show-tag">下半場</span> <span class="show-tag">中文</span>
-                <h2 class="show-title serif-font">夢想筆記本</h2>
-                <div class="show-meta">兒童音樂劇 | 60分鐘</div>
-            </div>
-
-            <div class="show-quote">「在分數與夢想的夾縫中，我們是否弄丟了什麼？」</div>
-            
-            <div style="color: var(--text-white); margin-bottom: 30px; font-size: 1.05rem;">
-                孩子受困於考試的壓力，無意間喚醒了父母昔日不得不放棄夢想的遺憾回憶。這是一場跨越兩代，關於愛、理解與自我和解的深情對話。
-            </div>
-
-            <div class="divider"></div>
-
-            <div style="margin-bottom: 40px; display: grid; gap: 25px;">
-                <div>
-                    <div class="section-header serif-font">觀賞焦點</div>
-                    <div style="color: var(--text-white);">親子間細膩的情感流動、充滿童趣又不失深度的歌曲。</div>
-                </div>
-                <div>
-                    <div class="section-header serif-font">獻給</div>
-                    <div style="color: var(--text-white);">曾經是小孩的大人，以及正在長大的孩子們。</div>
-                </div>
-            </div>
-
-            <div class="divider"></div>
-
-            <div style="margin-bottom: 50px;">
-                <div class="section-header serif-font">曲目</div>
-                <ul class="song-list">
-                    <li class="song-item"><span class="song-item-num">01</span> 半個暑假</li>
-                    <li class="song-item"><span class="song-item-num">02</span> 大大大書包</li>
-                    <li class="song-item"><span class="song-item-num">03</span> 考試考試考試</li>
-                    <li class="song-item"><span class="song-item-num">04</span> 我有一個夢</li>
-                    <li class="song-item"><span class="song-item-num">05</span> 我還記得那片星空</li>
-                    <li class="song-item"><span class="song-item-num">06</span> 我的秘密基地</li>
-                    <li class="song-item"><span class="song-item-num">07</span> 把呼吸留在這裡</li>
-                    <li class="song-item"><span class="song-item-num">08</span> 夢想傳遞</li>
-                </ul>
-            </div>
-
-            <div style="margin-bottom: 50px;">
-                <div class="section-header serif-font">演出卡司</div>
-                <div class="cast-grid">
-                    <div class="cast-item"><div class="cast-role">角色</div><div class="cast-name">姓名</div></div>
-                    <div class="cast-item"><div class="cast-role">角色</div><div class="cast-name">姓名</div></div>
-                    <div class="cast-item"><div class="cast-role">角色</div><div class="cast-name">姓名</div></div>
-                    <div class="cast-item"><div class="cast-role">角色</div><div class="cast-name">姓名</div></div>
-                </div>
-            </div>
-
-            <div>
-                <div class="section-header serif-font">製作團隊</div>
-                <div class="creative-grid">
-                    <div class="creative-row"><span class="c-role">編劇</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">編曲</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">作詞</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">編舞</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">作曲</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">戲劇指導</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">音樂製作</span><span class="c-name">姓名</span></div>
-                    <div class="creative-row"><span class="c-role">歌唱指導</span><span class="c-name">姓名</span></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="schedule">
-            <h2 class="main-title serif-font">當日流程</h2>
-            <div class="luxury-card" style="padding: 30px;">
-                <table>
-                    <tr class="time-row">
-                        <td class="time-col">14:00</td>
-                        <td class="event-col">開放入場 (Welcome!)</td>
-                    </tr>
-                    <tr class="time-row highlight-row">
-                        <td class="time-col">14:20</td>
-                        <td class="event-col highlight-text">準時關門，請盡速入座 ❤️</td>
-                    </tr>
-                    <tr class="time-row">
-                        <td class="time-col">14:30</td>
-                        <td class="event-col" style="font-weight: bold; color: var(--text-gold); font-size: 1.1rem;">夢想啟航，正式演出</td>
-                    </tr>
-                    <tr class="time-row">
-                        <td class="time-col">上半場</td>
-                        <td class="event-col">
-                            <strong>《The Last 30 Mins》</strong>
-                            <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">青少年全英語音樂劇</div>
-                        </td>
-                    </tr>
-                    <tr class="time-row">
-                        <td colspan="2" style="text-align: center; padding: 30px; color: var(--text-muted); font-style: italic; letter-spacing: 1px;">--- 中場休息 20分鐘 ---</td>
-                    </tr>
-                    <tr class="time-row">
-                        <td class="time-col">下半場</td>
-                        <td class="event-col">
-                            <strong>《夢想筆記本》</strong>
-                            <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">兒童音樂劇</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">16:20</td>
-                        <td class="event-col">預計演出結束 / 散場</td>
-                    </tr>
-                </table>
-                <div style="margin-top: 30px; text-align: center; color: var(--text-gold); font-size: 0.95rem; opacity: 0.8;">
-                    為了完美的觀賞品質，拜託拜託～一定要提早出門喔！🥺
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            © 2025 Hart Musical. Designed for the Audience.
-        </div>
-
+<div class="container">
+    <div class="header-section">
+        <img src="IMG_8339.jpg" alt="林俊齊" class="profile-img">
+        <h1 class="main-title">✦ 愛樂之夜 ✦</h1>
+        <div class="eng-title">Ayers Acoustic Night</div>
+        <h2 class="sub-title">林俊齊首場個人演奏會</h2>
     </div>
+
+    <div class="info-card">
+        <h3 class="serif" style="color:var(--accent-orange); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-top:0;">活動資訊 Information</h3>
+        
+        <div class="info-row">
+            <div class="info-icon">📅</div>
+            <div class="info-content"><span class="info-label">日期 Date</span><span class="info-value">2026 / 01 / 23（五）</span></div>
+        </div>
+        <div class="info-row">
+            <div class="info-icon">⏰</div>
+            <div class="info-content"><span class="info-label">時間 Time</span><span class="info-value">19:00 觀眾入場 / 19:30 演出開始</span></div>
+        </div>
+        <div class="info-row">
+            <div class="info-icon">🎫</div>
+            <div class="info-content">
+                <span class="info-label">票價 Ticket</span>
+                <span class="info-value">$250（預售）／ $350（現場）</span>
+                <div class="note">* 票價含一杯酒水飲料，可攜帶外食</div>
+            </div>
+        </div>
+        <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+                <span class="info-label">地點 Location</span>
+                <span class="info-value">Ayers Guitar 旗艦店 (台北)</span>
+                <div class="note">台北市中山區建國北路二段139號13樓之1</div>
+                <a href="https://www.instagram.com/reel/DSKC5SqDqH2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA%3D%3D" target="_blank" class="btn">查看演出空間 (Instagram)</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-card">
+        <h3 class="serif" style="color:var(--accent-orange); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-top:0;">當日流程 Schedule</h3>
+        <div class="schedule-list">
+            <div class="schedule-item" style="opacity: 0.6;">
+                <div class="time">17:30</div><div class="event">演出者試音</div>
+            </div>
+            <div class="schedule-item" style="opacity: 0.6;">
+                <div class="time">18:30</div><div class="event">休息吃飯</div>
+            </div>
+            <div class="schedule-item">
+                <div class="time">19:00</div><div class="event highlight-event">觀眾進場</div>
+            </div>
+            <div class="schedule-item">
+                <div class="time">19:30</div>
+                <div class="event highlight-event">演出開始 <div class="note" style="color: #fff; opacity: 0.8;">(演出時間 45 分鐘)</div></div>
+            </div>
+            <div class="schedule-item">
+                <div class="time">20:15</div>
+                <div class="event">
+                    <span class="highlight-event">Open Mic</span><div class="note">至 22:00</div>
+                    <div class="open-mic-box">
+                        <span class="om-title">✧ 歡迎一起來玩 Jam！</span>
+                        <div class="note" style="color:#eee; margin-bottom:10px;">無須自備樂器，現場提供多款木吉他可選擇，想帶上自己的任何樂器也歡迎！</div>
+                        <div class="instrument-tags">
+                            <span>🎤 雙Vocal麥克風</span><span>🎸 民謠/古典吉他</span><span>🪘 金杯鼓</span><span>📦 木箱鼓</span><span>🎹 Keyboard</span><span>🛸 手碟</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="schedule-item" style="opacity: 0.6;">
+                <div class="time">22:00</div><div class="event">撤場</div>
+            </div>
+            <div class="schedule-item" style="opacity: 0.6;">
+                <div class="time">22:30</div><div class="event">收拾完離開場地</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Ayers Acoustic Night. All rights reserved.<br>Ayers Guitar Flagship Store
+    </div>
+</div>
+<div class="city-silhouette"></div>
 
 </body>
 </html>
